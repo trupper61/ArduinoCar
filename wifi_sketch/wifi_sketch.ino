@@ -84,6 +84,22 @@ void changeSpeed(){
   analogWrite(EnA, speed);
 }
 
+void dreheLinks() {
+  digitalWrite(In3, LOW);
+  digitalWrite(In4, HIGH);
+
+  digitalWrite(In1, HIGH);
+  digitalWrite(In2, LOW);
+}
+
+void dreheRechts() {
+  digitalWrite(In3, HIGH);
+  digitalWrite(In4, LOW);
+
+  digitalWrite(In1, LOW);
+  digitalWrite(In2, HIGH);
+}
+
 void vorwaerts()
 {
   // Motor B
