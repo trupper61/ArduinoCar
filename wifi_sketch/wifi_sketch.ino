@@ -109,6 +109,17 @@ void vorwaerts()
   digitalWrite(In1, HIGH);
   digitalWrite(In2, LOW);
 }
+
+void ruckwaerts()
+{
+  // Motor B
+  digitalWrite(In3, LOW);
+  digitalWrite(In4, HIGH);
+  // Motor A einschalten
+  digitalWrite(In1, LOW);
+  digitalWrite(In2, HIGH);
+}
+
 void stop() {
   digitalWrite(In1, LOW);
   digitalWrite(In2, LOW);
