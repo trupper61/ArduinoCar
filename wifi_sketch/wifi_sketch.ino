@@ -7,6 +7,7 @@
 #define In4 6
 
 int speed = 0;
+int distance 0; //Nutzer bestimmt, wie weit es Fahren soll.
 
 char ssid[] = "ArduinoTest";
 char pass[] = "password";
@@ -118,6 +119,10 @@ void ruckwaerts()
   // Motor A einschalten
   digitalWrite(In1, LOW);
   digitalWrite(In2, HIGH);
+}
+
+void fahreBeliebiegeMeter() {
+  //Anhand der Geschwindigkeit von Power 130 bis 255 muss die Zeit der zurückgelegten Strecke gemessen werden.
 }
 
 void stop() {
