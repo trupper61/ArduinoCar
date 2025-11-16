@@ -94,5 +94,15 @@ namespace ArduinoCar
             rightSpeed = 0;
             UpdateUI();
         }
+        private void SendCommand_Click(object sender, EventArgs e)
+        {
+            byte cmd = presetPicker.SelectedIndex switch
+            {
+                0 => 0, // Kreis links
+                1 => 1, // Kreis rechts
+                _ => 0
+            };
+            // send command
+        }
     }
 }
