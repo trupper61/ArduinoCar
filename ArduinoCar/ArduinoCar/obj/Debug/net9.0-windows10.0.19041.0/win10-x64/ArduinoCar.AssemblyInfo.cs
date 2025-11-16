@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArduinoCar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5c16bad34115c1d14ffd96b4ed0e34b77e3ee2dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+0b80525b98c6b04e0c1e9484b07d3bf0c0746ea8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArduinoCar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArduinoCar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

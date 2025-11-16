@@ -6,8 +6,9 @@
 #define In3 7
 #define In4 6
 
-int speed = 0;
-int distance 0; //Nutzer bestimmt, wie weit es Fahren soll.
+int speedRight = 0;
+int speedLeft = 0;
+// int distance 0; //Nutzer bestimmt, wie weit es Fahren soll.
 
 char ssid[] = "ArduinoTest";
 char pass[] = "password";
@@ -46,32 +47,36 @@ void loop() {
   if (client) {
     Serial.println("New client connected");
     while (client.connected()) { // loop while client connected
-      if (client.available()) { // checks if their are bytes to read
-        char s = client.read();
+      if (client.available() >= 1) { // checks if their are bytes to read
+        byte cmd = client.read();
         Serial.print("Received: ");
-        if ((int)s == 1) {
-          speed += 10;
-          if (speed < 130) {
-            speed = 130;
-            vorwaerts();
-            changeSpeed();
-          }
-          else if (speed < 180){
-            changeSpeed();
-          }
+        Serial.println(cmd);
+        
+        speedRight = 150;
+        speedLeft = 150;
+        
+        if (client.available() >= 1){
+          speedRight = (int)client.read();
+          speedLeft = speedRight;
+        }
+        if (client.available() >= 1){
+          speedRight = (int)client.read();
+        }
+
+        switch(cmd) {
+          case 0: stop(); speedLeft = 0; speedRight = 0; Serial.println("Test"); break;
+          case 1: vorwaerts(); break;
+          case 2: ruckwaerts(); break;
+          case 3: dreheLinks(); break;
+          case 4: dreheRechts(); break;
+          default: stop(); break;
+        }
           
-        }
-        else if ((int)s == 0) {
-          speed -= 10;
-          if (speed < 130) {
-            stop();
-            speed = 0;
-          }
-          else {
-            changeSpeed();
-          }
-        }
-        Serial.println((int)s);
+        changeSpeed();
+        Serial.print("Left: ");
+        Serial.println(speedLeft);
+        Serial.print("Right: ");
+        Serial.println(speedRight);
       }
     }
     client.stop();
@@ -81,8 +86,8 @@ void loop() {
 }
 
 void changeSpeed(){
-  analogWrite(EnB, speed);
-  analogWrite(EnA, speed);
+  analogWrite(EnB, speedLeft);
+  analogWrite(EnA, speedRight);
 }
 
 void dreheLinks() {
