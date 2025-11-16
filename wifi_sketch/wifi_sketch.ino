@@ -7,12 +7,13 @@
 #define In4 6
 
 int speed = 0;
+int distance 0; //Nutzer bestimmt, wie weit es Fahren soll.
 
 char ssid[] = "ArduinoTest";
 char pass[] = "password";
 
 int status = WL_IDLE_STATUS;
-WiFiServer server(5555); // Creates server listens incomming connections to port 80
+WiFiServer server(5555); // Creates server listens incomming connections to port 5555
 
 void setup() {
   pinMode(EnA, OUTPUT);
@@ -84,6 +85,22 @@ void changeSpeed(){
   analogWrite(EnA, speed);
 }
 
+void dreheLinks() {
+  digitalWrite(In3, LOW);
+  digitalWrite(In4, HIGH);
+
+  digitalWrite(In1, HIGH);
+  digitalWrite(In2, LOW);
+}
+
+void dreheRechts() {
+  digitalWrite(In3, HIGH);
+  digitalWrite(In4, LOW);
+
+  digitalWrite(In1, LOW);
+  digitalWrite(In2, HIGH);
+}
+
 void vorwaerts()
 {
   // Motor B
@@ -93,6 +110,21 @@ void vorwaerts()
   digitalWrite(In1, HIGH);
   digitalWrite(In2, LOW);
 }
+
+void ruckwaerts()
+{
+  // Motor B
+  digitalWrite(In3, LOW);
+  digitalWrite(In4, HIGH);
+  // Motor A einschalten
+  digitalWrite(In1, LOW);
+  digitalWrite(In2, HIGH);
+}
+
+void fahreBeliebiegeMeter() {
+  //Anhand der Geschwindigkeit von Power 130 bis 255 muss die Zeit der zurückgelegten Strecke gemessen werden.
+}
+
 void stop() {
   digitalWrite(In1, LOW);
   digitalWrite(In2, LOW);
