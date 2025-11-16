@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\stmic\\source\\repos\\ArduinoCar\\ArduinoCar\\",
+  "WorkspaceRootPath": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\stmic\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\stmic\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,26 +26,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\stmic\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml",
               "RelativeDocumentMoniker": "ArduinoCar\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\stmic\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml",
               "RelativeToolTip": "ArduinoCar\\MainPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-11-14T12:59:06.158Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\stmic\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "ArduinoCar\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\stmic\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
               "RelativeToolTip": "ArduinoCar\\MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAADYAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T12:58:56.728Z",
               "EditorCaption": ""
