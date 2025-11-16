@@ -5,11 +5,12 @@ namespace ArduinoCar
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
+            leftBar.Progress = 50;
+            rightBar.Progress = 50;
         }
 
         private void On_Clicked(object sender, EventArgs e)
