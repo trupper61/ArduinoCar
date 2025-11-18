@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|solutionrelative:arduinocar\\mainpage.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{06113900-C82A-40A6-BF00-B61B6665E760}|ArduinoCar\\ArduinoCar.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar\\arduinocar\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -25,31 +25,28 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "ArduinoCar\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\MainPage.xaml.cs",
               "RelativeToolTip": "ArduinoCar\\MainPage.xaml.cs",
-              "ViewState": "AgIAAFYAAABgZmZmZmYwwC4AAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4AAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T12:58:56.728Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ArduinoController.cs",
               "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\ArduinoController.cs",
               "RelativeDocumentMoniker": "ArduinoCar\\ArduinoController.cs",
               "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar\\ArduinoCar\\ArduinoController.cs",
               "RelativeToolTip": "ArduinoCar\\ArduinoController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAYwC8AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAADAzMzMzMwiwCgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-16T14:30:11.917Z",
               "EditorCaption": ""
@@ -64,8 +61,11 @@
               "RelativeToolTip": "ArduinoCar\\MainPage.xaml",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-14T12:59:06.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T12:59:06.158Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

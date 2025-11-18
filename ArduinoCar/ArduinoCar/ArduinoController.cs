@@ -11,7 +11,7 @@ namespace ArduinoCar
     public class ArduinoController
     {
         private Socket socket;
-        public bool IsConnected => socket != null && socket.Connected;
+        public bool IsConnected;
         public string LastError { get; private set; }
         
         public bool Connect()
@@ -26,18 +26,19 @@ namespace ArduinoCar
                 socket.Connect(endpoint);
 
                 LastError = null;
+                IsConnected = true;
                 return true;
             }
             catch (Exception ex)
             {
                 this.LastError = ex.Message;
+                IsConnected = false;
                 return false;
             }
         }
         private byte ConvertPower(int sliderValue)
         {
-            sliderValue = Math.Clamp(sliderValue, 0, 100);
-            return (byte)(130 + (sliderValue * 100 / 100)); // 130 + 0–100
+            return (byte)(130 + sliderValue);
         }
         public void SendCmd(byte cmd)
         {
@@ -69,6 +70,7 @@ namespace ArduinoCar
             try
             {
                 socket?.Close();
+                IsConnected = false;
                 socket = null;
             }
             catch { }
