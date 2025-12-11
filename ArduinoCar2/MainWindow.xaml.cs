@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using static ArduinoCar2.DriveState;
 
 namespace ArduinoCar2
 {
@@ -28,6 +30,8 @@ namespace ArduinoCar2
 
         private bool forward, backward, left, right, circleLeft, circleRight = false;
         private DispatcherTimer timer;
+        public List<(StateControl A, StateControl B)> Connections = new List<(StateControl A, StateControl B)>();
+        public StateControl pending = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +43,6 @@ namespace ArduinoCar2
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(70);
             timer.Tick += Timer_Tick;
-            timer.Start();
         }
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
@@ -49,6 +52,8 @@ namespace ArduinoCar2
             if (e.Key == Key.D) right = false;
             if (e.Key == Key.Q) circleLeft = false;
             if (e.Key == Key.E) circleRight = false;
+
+            CheckTimer();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -122,9 +127,93 @@ namespace ArduinoCar2
             if (e.Key == Key.D) right = true;
             if (e.Key == Key.Q) circleLeft = true;
             if (e.Key == Key.E) circleRight = true;
+
+            CheckTimer();
         }
 
+        private void CheckTimer()
+        {
+            bool keyPressed = forward || backward || right || left || circleLeft || circleRight;
+            if (keyPressed)
+            {
+                if (!timer.IsEnabled)
+                    timer.Start();
+            }
+            else
+            {
+                if (timer.IsEnabled)
+                    timer.Stop();
+                controller.SendCmd((byte)ArduinoCommands.Stop);
+                leftSpeed = 0;
+                rightSpeed = 0;
+                UpdateUI();
+            }
+        }
 
+        private void State_ConnectRequested(StateControl s)
+        {
+            if (pending == null)
+            {
+                pending = s;
+                return;
+            }
+            Connections.Add((pending, s));
+            DrawConnections();
+            pending = null;
+        }
+        private void DrawConnections()
+        {
+            stateCanvas.Children.OfType<Line>().ToList().ForEach(l => stateCanvas.Children.Remove(l));
+            foreach(var (a, b) in Connections)
+            {
+                var line = new Line
+                {
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 2,
+                    X1 = Canvas.GetLeft(a) + a.Width / 2,
+                    Y1 = Canvas.GetTop(a) + a.Height / 2,
+                    X2 = Canvas.GetLeft(b) + b.Width / 2,
+                    Y2 = Canvas.GetTop(b) + b.Height / 2
+                };
+                stateCanvas.Children.Add(line);
+            }
+        }
+
+        private async void StartPlan_Click(object sender, RoutedEventArgs e)
+        {
+            if (timer.IsEnabled)
+                timer.Stop();
+            CheckTimer();
+            await ExecuteStates();
+        }
+        public async Task ExecuteStates()
+        {
+            foreach (var (control, next) in Connections)
+            {
+                var state = control.StateData;
+                switch (state.Action)
+                {
+                    case StateAction.Forward:
+                        controller.SendCmd((byte)ArduinoCommands.Forward, 10);
+                        break;
+                    case StateAction.Backward:
+                        controller.SendCmd((byte)ArduinoCommands.Backward, 10);
+                        break;
+                    case StateAction.CircleLeft:
+                        controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
+                        break;
+                    case StateAction.CircleRight:
+                        controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
+                        break;
+                }
+
+                if (state.Unit == StateUnit.Seconds)
+                    await Task.Delay((int)(state.Value * 1000));
+                else
+                    await Task.Delay((int)(state.Value * 100)); // Zeit hinterlegt 1 dm in ms
+            }
+            controller.SendCmd((byte)ArduinoCommands.Stop);
+        }
         private void TryConnect()
         {
             statusLabel.Text = "Verbindung wird aufgebaut...";
@@ -175,14 +264,15 @@ namespace ArduinoCar2
 
         private void ShowPanel_Click(object sender, RoutedEventArgs e)
         {
-            drivePanel.Visibility = Visibility.Hidden;
-            //layoutPanel.Visibility = Visibility.Visible;
+            drivePanel.Visibility = Visibility.Collapsed;
+            planPanel.Visibility = Visibility.Visible;
         }
-        //private void btn1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    layoutPanel.Visibility = Visibility.Hidden;
-        //    drivePanel.Visibility = Visibility.Visible;
-        //}
+        
+        private void BackToDrive_Click(object sender, RoutedEventArgs e)
+        {
+            drivePanel.Visibility = Visibility.Visible;
+            planPanel.Visibility = Visibility.Collapsed;
+        }
 
         private void Right_Click(object sender, EventArgs e)
         {
@@ -212,7 +302,16 @@ namespace ArduinoCar2
             controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
         }
 
-
+        public void AddState_Click(object sender, RoutedEventArgs e)
+        {
+            var state = new DriveState("Geradeaus",StateAction.Forward, 1, StateUnit.Seconds);
+            var controll = new StateControl();
+            controll.ConnectRequested += State_ConnectRequested;
+            controll.StateData = state;
+            Canvas.SetLeft(controll, 100);
+            Canvas.SetTop(controll, 100);
+            stateCanvas.Children.Add(controll);
+        }
 
         public enum ArduinoCommands : byte
         {

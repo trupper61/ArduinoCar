@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ruper\source\repos\ArduinoCar2\ArduinoCar2\obj\Debug\
+D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\
 ArduinoCar2
 none
 false
 DEBUG;TRACE
-C:\Users\ruper\source\repos\ArduinoCar2\ArduinoCar2\App.xaml
-1219584333
+D:\Documents\GitHub\ArduinoCar\ArduinoCar2\App.xaml
+365409983
 
-72055274397
+10-814227992
 13-1310406943
-MainWindow.xaml;
+MainWindow.xaml;StateControl.xaml;StateEditor.xaml;
 
 True
 
