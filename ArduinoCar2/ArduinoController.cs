@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ArduinoCar2
 {
@@ -47,6 +48,10 @@ namespace ArduinoCar2
                 byte[] package = new byte[] { cmd };
                 socket.Send(package);
             }
+            else
+            {
+                MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         public void SendCmd(byte cmd, int power)
         {
@@ -54,6 +59,10 @@ namespace ArduinoCar2
             {
                 byte[] package = new byte[] { cmd, ConvertPower(power) };
                 socket.Send(package);
+            }
+            else
+            {
+                MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -63,6 +72,10 @@ namespace ArduinoCar2
             {
                 byte[] package = new byte[] { cmd, ConvertPower(powerLeft), ConvertPower(powerRight) };
                 socket.Send(package);
+            }
+            else
+            {
+                MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         public void Disconnect()

@@ -30,16 +30,13 @@ namespace ArduinoCar2
 
         private bool forward, backward, left, right, circleLeft, circleRight = false;
         private DispatcherTimer timer;
-        public List<(StateControl A, StateControl B)> Connections = new List<(StateControl A, StateControl B)>();
-        public StateControl pending = null;
+        public List<DriveState> states = new List<DriveState>();
         public MainWindow()
         {
             InitializeComponent();
             UpdateUI();
             this.Focusable = true;
             this.Focus();
-            //KeyDown += Window_KeyDown;
-            //KeyUp += Window_KeyUp;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(70);
             timer.Tick += Timer_Tick;
@@ -62,22 +59,20 @@ namespace ArduinoCar2
                 if (forward)
                 {
                     leftSpeed = 10;
-                    rightSpeed = 10;  
+                    rightSpeed = 10;
+                    if (left)
+                        rightSpeed = 50;
+                    if (right)
+                        leftSpeed = 50;
                 }
                 if (backward)
                 {
                     leftSpeed = -10;
                     rightSpeed = -10;
-                }
-                if (left && forward)
-                {
-                    leftSpeed = 10;
-                    rightSpeed += 50;
-                }
-                if (right && forward)
-                {
-                    leftSpeed += 50;
-                    rightSpeed = 10;
+                    if (left)
+                        rightSpeed = -50;
+                    if (right)
+                        leftSpeed = -50;
                 }
                 if (circleLeft)
                 {
@@ -150,54 +145,50 @@ namespace ArduinoCar2
             }
         }
 
-        private void State_ConnectRequested(StateControl s)
+        private void AddState_Click(object sender, EventArgs e)
         {
-            if (pending == null)
+            DriveState state = new DriveState
             {
-                pending = s;
-                return;
-            }
-            Connections.Add((pending, s));
-            DrawConnections();
-            pending = null;
+                Index = states.Count,
+                Action = StateAction.Forward,
+                Value = 1.0,
+                Unit = StateUnit.Seconds
+            };
+            states.Add(state);
+            RefreshGrid();
         }
-        private void DrawConnections()
+        private void DeleteState_Click(object sender, EventArgs e)
         {
-            stateCanvas.Children.OfType<Line>().ToList().ForEach(l => stateCanvas.Children.Remove(l));
-            foreach(var (a, b) in Connections)
+            if (stateGrid.SelectedItem is DriveState selected)
             {
-                var line = new Line
+                states.Remove(selected);
+                for (int i = 0; i < states.Count; i++)
                 {
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 2,
-                    X1 = Canvas.GetLeft(a) + a.Width / 2,
-                    Y1 = Canvas.GetTop(a) + a.Height / 2,
-                    X2 = Canvas.GetLeft(b) + b.Width / 2,
-                    Y2 = Canvas.GetTop(b) + b.Height / 2
-                };
-                stateCanvas.Children.Add(line);
+                    states[i].Index = i + 1;
+                }
             }
+            RefreshGrid();
         }
-
-        private async void StartPlan_Click(object sender, RoutedEventArgs e)
+        private async void StartPlan_Click(object sender, EventArgs e)
         {
-            if (timer.IsEnabled)
-                timer.Stop();
-            CheckTimer();
             await ExecuteStates();
         }
-        public async Task ExecuteStates()
+        private async Task ExecuteStates()
         {
-            foreach (var (control, next) in Connections)
+            if (!controller.IsConnected)
             {
-                var state = control.StateData;
+                MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            foreach (var state in states.OrderBy(s =>  s.Index))
+            {
                 switch (state.Action)
                 {
                     case StateAction.Forward:
-                        controller.SendCmd((byte)ArduinoCommands.Forward, 10);
+                        controller.SendCmd((byte)ArduinoCommands.Backward, 10);
                         break;
                     case StateAction.Backward:
-                        controller.SendCmd((byte)ArduinoCommands.Backward, 10);
+                        controller.SendCmd((byte)ArduinoCommands.Forward, 10);
                         break;
                     case StateAction.CircleLeft:
                         controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
@@ -205,15 +196,52 @@ namespace ArduinoCar2
                     case StateAction.CircleRight:
                         controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
                         break;
+                    case StateAction.Stop:
+                        controller.SendCmd((byte)ArduinoCommands.Stop);
+                        break;
                 }
-
+                int delay = 0;
                 if (state.Unit == StateUnit.Seconds)
-                    await Task.Delay((int)(state.Value * 1000));
+                {
+                    delay = (int)(state.Value * 1000);
+                }
                 else
-                    await Task.Delay((int)(state.Value * 100)); // Zeit hinterlegt 1 dm in ms
+                {
+                    delay = (int)(state.Value * 500); //für dm
+                }
+                await Task.Delay(delay);
             }
             controller.SendCmd((byte)ArduinoCommands.Stop);
         }
+        private void RefreshGrid()
+        {
+            stateGrid.ItemsSource = null;
+            stateGrid.ItemsSource = states;
+        }
+
+        private void StateGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "Wert")
+            {
+                if (e.EditingElement is TextBox tb)
+                {
+                    if (double.TryParse(tb.Text, out double value))
+                    {
+                        if (value <= 0)
+                        {
+                            MessageBox.Show("Der Wert muss größer als 0 sein!", "Ungültige Eingabe", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            tb.Text = "1";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bitte eine gültige Zahl eingeben!", "Ungültige Eingabe", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        tb.Text = "1";
+                    }
+                }
+            }
+        }
+
         private void TryConnect()
         {
             statusLabel.Text = "Verbindung wird aufgebaut...";
@@ -244,21 +272,21 @@ namespace ArduinoCar2
         {
             leftSpeed = 100;
             rightSpeed = 100;
-            controller.SendCmd((byte)ArduinoCommands.Forward, 10);
+            controller.SendCmd((byte)ArduinoCommands.Backward, 10);
             UpdateUI();
         }
         private void Backward_Click(object sender, EventArgs e)
         {
             leftSpeed = -100;
             rightSpeed = -100;
-            controller.SendCmd((byte)ArduinoCommands.Backward, 10);
+            controller.SendCmd((byte)ArduinoCommands.Forward, 10);
             UpdateUI();
         }
         private void Left_Click(object sender, EventArgs e)
         {
             leftSpeed = 40;
             rightSpeed = 70;
-            controller.SendCmd((byte)ArduinoCommands.Forward, 5, 15);
+            controller.SendCmd((byte)ArduinoCommands.Backward, 10, 50);
             UpdateUI();
         }
 
@@ -278,7 +306,7 @@ namespace ArduinoCar2
         {
             leftSpeed = 70;
             rightSpeed = 40;
-            controller.SendCmd((byte)ArduinoCommands.Forward, 15, 5);
+            controller.SendCmd((byte)ArduinoCommands.Backward, 50, 10);
             UpdateUI();
         }
         private void Stop_Click(object sender, EventArgs e)
@@ -300,17 +328,6 @@ namespace ArduinoCar2
             leftSpeed = 80;
             rightSpeed = -80;
             controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
-        }
-
-        public void AddState_Click(object sender, RoutedEventArgs e)
-        {
-            var state = new DriveState("Geradeaus",StateAction.Forward, 1, StateUnit.Seconds);
-            var controll = new StateControl();
-            controll.ConnectRequested += State_ConnectRequested;
-            controll.StateData = state;
-            Canvas.SetLeft(controll, 100);
-            Canvas.SetTop(controll, 100);
-            stateCanvas.Children.Add(controll);
         }
 
         public enum ArduinoCommands : byte

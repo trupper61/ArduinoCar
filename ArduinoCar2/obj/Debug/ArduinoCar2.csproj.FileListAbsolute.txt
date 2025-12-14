@@ -29,7 +29,3 @@ D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\ArduinoCar2.csproj.Generate
 D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\ArduinoCar2.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\ArduinoCar2.exe
 D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\ArduinoCar2.pdb
-D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\StateControl.g.cs
-D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\StateEditor.g.cs
-D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\StateControl.baml
-D:\Documents\GitHub\ArduinoCar\ArduinoCar2\obj\Debug\StateEditor.baml

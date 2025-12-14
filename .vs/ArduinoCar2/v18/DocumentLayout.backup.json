@@ -7,32 +7,16 @@
       "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\statecontrol.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\statecontrol.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|D:\\Documents\\GitHub\\ArduinoCar\\arduinocar2\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\statecontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\statecontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\stateeditor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\stateeditor.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\stateeditor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\stateeditor.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\drivestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|D:\\Documents\\GitHub\\ArduinoCar\\arduinocar2\\drivestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\drivestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|d:\\documents\\github\\arduinocar\\arduinocar2\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\arduinocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,69 +26,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StateEditor.xaml.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateEditor.xaml.cs",
-              "RelativeDocumentMoniker": "ArduinoCar2\\StateEditor.xaml.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateEditor.xaml.cs",
-              "RelativeToolTip": "ArduinoCar2\\StateEditor.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACUAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T20:41:13.973Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "StateEditor.xaml",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateEditor.xaml",
-              "RelativeDocumentMoniker": "ArduinoCar2\\StateEditor.xaml",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateEditor.xaml",
-              "RelativeToolTip": "ArduinoCar2\\StateEditor.xaml",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ArduinoCar2\\MainWindow.xaml",
+              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml",
+              "RelativeToolTip": "ArduinoCar2\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-11T20:38:41.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StateControl.xaml.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateControl.xaml.cs",
-              "RelativeDocumentMoniker": "ArduinoCar2\\StateControl.xaml.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateControl.xaml.cs",
-              "RelativeToolTip": "ArduinoCar2\\StateControl.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAcwBsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T20:34:05.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StateControl.xaml",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateControl.xaml",
-              "RelativeDocumentMoniker": "ArduinoCar2\\StateControl.xaml",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\StateControl.xaml",
-              "RelativeToolTip": "ArduinoCar2\\StateControl.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-11T20:32:23.789Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ArduinoController.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\ArduinoController.cs",
-              "RelativeDocumentMoniker": "ArduinoCar2\\ArduinoController.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\ArduinoController.cs",
-              "RelativeToolTip": "ArduinoCar2\\ArduinoController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAUwEEAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-11T19:57:52.261Z",
+              "WhenOpened": "2025-12-14T16:37:04.529Z",
               "EditorCaption": ""
             },
             {
@@ -115,34 +48,35 @@
               "RelativeDocumentMoniker": "ArduinoCar2\\MainWindow.xaml.cs",
               "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml.cs",
               "RelativeToolTip": "ArduinoCar2\\MainWindow.xaml.cs",
-              "ViewState": "AgIAACIBAAAAAAAAAAAcwDQBAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAADwvzQBAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-11T19:58:42.863Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "ArduinoController.cs",
+              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\ArduinoController.cs",
+              "RelativeDocumentMoniker": "ArduinoCar2\\ArduinoController.cs",
+              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\ArduinoController.cs",
+              "RelativeToolTip": "ArduinoCar2\\ArduinoController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAE0AAAB4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T19:57:52.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "DriveState.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\DriveState.cs",
               "RelativeDocumentMoniker": "ArduinoCar2\\DriveState.cs",
               "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\DriveState.cs",
               "RelativeToolTip": "ArduinoCar2\\DriveState.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wCAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowCIAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-11T20:11:51.45Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "ArduinoCar2\\MainWindow.xaml",
-              "ToolTip": "D:\\Documents\\GitHub\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml",
-              "RelativeToolTip": "ArduinoCar2\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-11T19:58:45.602Z",
               "EditorCaption": ""
             }
           ]
