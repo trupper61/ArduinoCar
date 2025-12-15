@@ -330,6 +330,39 @@ namespace ArduinoCar2
             controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
         }
 
+        private void Help_Click(object sender, EventArgs e)
+        {
+            if (drivePanel.Visibility == Visibility.Visible)
+            {
+                helpTextBox.Text = @"Fahrsteuerung
+Tastatur:
+W   -   Vorwärts
+S   -   Rückwärts
+A   -   Links
+D   -   Rechts
+Q   -   Kreis links
+E   -   Kreis rechts
+
+Buttons:
+Steuern den Panzer an alternativ zur Tastatur";
+            }
+            else if (planPanel.Visibility == Visibility.Visible) 
+            {
+                helpTextBox.Text = @"Planer
+Hier kannst du Zustände festlegen und hinzufügen:
+Aktionen beschreibt was der Panzer bewältigen soll
+und der Wert bestimmt die Angabe in Sekunden oder in
+Strecken in dm (Der Wert muss größer als 0 sein).
+
+Der Planer wird von oben nach unten ausgeführt";
+            }
+            helpPanel.Visibility = Visibility.Visible;
+        }
+
+        private void CloseHelp_Click(object sender, EventArgs e)
+        {
+            helpPanel.Visibility = Visibility.Collapsed;    
+        }
         public enum ArduinoCommands : byte
         {
             Stop = 0,
