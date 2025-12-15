@@ -56,33 +56,46 @@ namespace ArduinoCar2
         {
             if (controller.IsConnected)
             {
+                bool shift = Keyboard.IsKeyDown(Key.LeftShift);
                 if (forward)
                 {
-                    leftSpeed = 10;
-                    rightSpeed = 10;
+                    leftSpeed = shift ? 100 : 10;
+                    rightSpeed = shift ? 100 : 10;
                     if (left)
-                        rightSpeed = 50;
+                    {
+                        rightSpeed = shift ? 110 : 70;
+                        leftSpeed = shift ? 40 : 10;
+                    }
                     if (right)
-                        leftSpeed = 50;
+                    {
+                        leftSpeed = shift ? 110 : 70;
+                        rightSpeed = shift ? 40 : 10;
+                    }
                 }
                 if (backward)
                 {
-                    leftSpeed = -10;
-                    rightSpeed = -10;
+                    leftSpeed = shift ? -100 : -10;
+                    rightSpeed = shift ? -100 : -10;
                     if (left)
-                        rightSpeed = -50;
+                    {
+                        rightSpeed = shift ? -110 : -70;
+                        leftSpeed = shift ? -40 : -10;
+                    }
                     if (right)
-                        leftSpeed = -50;
+                    {
+                        leftSpeed = shift? -110 : -70;
+                        rightSpeed = shift ? -40 : -10;
+                    }
                 }
                 if (circleLeft)
                 {
-                    leftSpeed = -20;
-                    rightSpeed = 20;
+                    leftSpeed = shift ? -50 : -20;
+                    rightSpeed = shift ? 50 : 20;
                 }
                 if (circleRight)
                 {
-                    leftSpeed = 20;
-                    rightSpeed = -20;
+                    leftSpeed = shift ? 50 : 20;
+                    rightSpeed = shift ? -50 : -20;
                 }
                 if (!forward && !backward && !left && !right && !circleLeft && !circleRight)
                 {
@@ -95,8 +108,8 @@ namespace ArduinoCar2
 
                 ArduinoCommands cmd;
                 if (leftSpeed == 0 && rightSpeed == 0) cmd = ArduinoCommands.Stop;
-                else if (leftSpeed <= 0 && rightSpeed <= 0) cmd = ArduinoCommands.Forward;
-                else if (leftSpeed >= 0 && rightSpeed >= 0) cmd = ArduinoCommands.Backward;
+                else if (leftSpeed <= 0 && rightSpeed <= 0) cmd = ArduinoCommands.Backward;
+                else if (leftSpeed >= 0 && rightSpeed >= 0) cmd = ArduinoCommands.Forward;
                 else if (leftSpeed < 0 && rightSpeed > 0) cmd = ArduinoCommands.CircleRight;
                 else if (leftSpeed > 0 && rightSpeed < 0) cmd = ArduinoCommands.CircleLeft;
                 else cmd = ArduinoCommands.Stop;
@@ -185,10 +198,10 @@ namespace ArduinoCar2
                 switch (state.Action)
                 {
                     case StateAction.Forward:
-                        controller.SendCmd((byte)ArduinoCommands.Backward, 10);
+                        controller.SendCmd((byte)ArduinoCommands.Forward, 10);
                         break;
                     case StateAction.Backward:
-                        controller.SendCmd((byte)ArduinoCommands.Forward, 10);
+                        controller.SendCmd((byte)ArduinoCommands.Backward, 10);
                         break;
                     case StateAction.CircleLeft:
                         controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
@@ -272,21 +285,21 @@ namespace ArduinoCar2
         {
             leftSpeed = 100;
             rightSpeed = 100;
-            controller.SendCmd((byte)ArduinoCommands.Backward, 10);
+            controller.SendCmd((byte)ArduinoCommands.Forward, 10);
             UpdateUI();
         }
         private void Backward_Click(object sender, EventArgs e)
         {
             leftSpeed = -100;
             rightSpeed = -100;
-            controller.SendCmd((byte)ArduinoCommands.Forward, 10);
+            controller.SendCmd((byte)ArduinoCommands.Backward, 10);
             UpdateUI();
         }
         private void Left_Click(object sender, EventArgs e)
         {
             leftSpeed = 40;
             rightSpeed = 70;
-            controller.SendCmd((byte)ArduinoCommands.Backward, 10, 50);
+            controller.SendCmd((byte)ArduinoCommands.Forward, 70, 50);
             UpdateUI();
         }
 
@@ -306,7 +319,7 @@ namespace ArduinoCar2
         {
             leftSpeed = 70;
             rightSpeed = 40;
-            controller.SendCmd((byte)ArduinoCommands.Backward, 50, 10);
+            controller.SendCmd((byte)ArduinoCommands.Forward, 70, 10);
             UpdateUI();
         }
         private void Stop_Click(object sender, EventArgs e)
