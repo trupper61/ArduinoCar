@@ -29,8 +29,8 @@ namespace ArduinoCar2
         private ArduinoController controller = new ArduinoController();
 
         private bool forward, backward, left, right, circleLeft, circleRight = false;
-        private DispatcherTimer timer;
-        public List<DriveState> states = new List<DriveState>();
+        private DispatcherTimer timer; // kontinuirliches Senden für die Tasten
+        public List<DriveState> states = new List<DriveState>(); // gespeicherte Zustände für Planer
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +41,9 @@ namespace ArduinoCar2
             timer.Interval = TimeSpan.FromMilliseconds(70);
             timer.Tick += Timer_Tick;
         }
+        /// <summary>
+        /// Beim loslassen der Tasten wird der entsprechende bool auf false gesetzt. Stoppt ggf. Timer, wenn keine Tasten mehr gedrückt sind.
+        /// </summary>
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.W) forward = false;
@@ -52,6 +55,46 @@ namespace ArduinoCar2
 
             CheckTimer();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.W) forward = true;
+            if (e.Key == Key.S) backward = true;
+            if (e.Key == Key.A) left = true;
+            if (e.Key == Key.D) right = true;
+            if (e.Key == Key.Q) circleLeft = true;
+            if (e.Key == Key.E) circleRight = true;
+
+            CheckTimer();
+        }
+        /// <summary>
+        /// Prüft, ob mindestens eine Steuerungstaste gedrückt ist und 
+        /// startet oder stoppt den Timer entsprechend.
+        /// </summary>
+        private void CheckTimer()
+        {
+            bool keyPressed = forward || backward || right || left || circleLeft || circleRight;
+            if (keyPressed)
+            {
+                if (!timer.IsEnabled)
+                    timer.Start();
+            }
+            else
+            {
+                if (timer.IsEnabled)
+                    timer.Stop();
+                controller.SendCmd((byte)ArduinoCommands.Stop);
+                leftSpeed = 0;
+                rightSpeed = 0;
+                UpdateUI();
+            }
+        }
+        /// <summary>
+        /// Wird alle 70ms ausgeführt, solange der Timer aktiv ist
+        /// Berechnet linke und rechte Kettengeschwindigkeit basierend auf Tastendruck
+        /// Die linke Shifttaste führt zu einen Boost
+        /// Sendet die Werte anschließend an den Arduino
+        /// </summary>
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (controller.IsConnected)
@@ -107,6 +150,7 @@ namespace ArduinoCar2
                 rightSpeed = returnMinMax(rightSpeed);
 
                 ArduinoCommands cmd;
+
                 if (leftSpeed == 0 && rightSpeed == 0) cmd = ArduinoCommands.Stop;
                 else if (leftSpeed <= 0 && rightSpeed <= 0) cmd = ArduinoCommands.Backward;
                 else if (leftSpeed >= 0 && rightSpeed >= 0) cmd = ArduinoCommands.Forward;
@@ -120,44 +164,19 @@ namespace ArduinoCar2
                 rightSpeed = 0;
             }
         }
+        /// <summary>
+        /// Begrenzung der Kettengeschwindigkeit auf maximal +/-110
+        /// </summary>
         private int returnMinMax(int num)
         {
-            if (num <= -60) return -60;
-            else if (num >= 60) return 60;
+            if (num <= -110) return -110;
+            else if (num >= 110) return 110;
             else return num;
         }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.W) forward = true;
-            if (e.Key == Key.S) backward = true;
-            if (e.Key == Key.A) left = true;
-            if (e.Key == Key.D) right = true;
-            if (e.Key == Key.Q) circleLeft = true;
-            if (e.Key == Key.E) circleRight = true;
-
-            CheckTimer();
-        }
-
-        private void CheckTimer()
-        {
-            bool keyPressed = forward || backward || right || left || circleLeft || circleRight;
-            if (keyPressed)
-            {
-                if (!timer.IsEnabled)
-                    timer.Start();
-            }
-            else
-            {
-                if (timer.IsEnabled)
-                    timer.Stop();
-                controller.SendCmd((byte)ArduinoCommands.Stop);
-                leftSpeed = 0;
-                rightSpeed = 0;
-                UpdateUI();
-            }
-        }
-
+        /// <summary>
+        /// Fügt einen Zustand hinzu
+        /// Index wird automatisch inkrementiert und mit Standardwerten vergeben
+        /// </summary>
         private void AddState_Click(object sender, EventArgs e)
         {
             DriveState state = new DriveState
@@ -170,6 +189,10 @@ namespace ArduinoCar2
             states.Add(state);
             RefreshGrid();
         }
+        /// <summary>
+        /// Löscht ausgewählten Zustand
+        /// Updated die Indexe von neuen
+        /// </summary>
         private void DeleteState_Click(object sender, EventArgs e)
         {
             if (stateGrid.SelectedItem is DriveState selected)
@@ -186,6 +209,11 @@ namespace ArduinoCar2
         {
             await ExecuteStates();
         }
+        /// <summary>
+        /// Führt Zustände nacheinander aus
+        /// Prüft die Verbindung, sendet entsprechende Befehle
+        /// Wiederholt für alle erstellten Befehle und Berücksichtigt die entsprechenden Werte
+        /// </summary>
         private async Task ExecuteStates()
         {
             if (!controller.IsConnected)
@@ -193,7 +221,7 @@ namespace ArduinoCar2
                 MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            foreach (var state in states.OrderBy(s =>  s.Index))
+            foreach (DriveState state in states.OrderBy(s =>  s.Index))
             {
                 switch (state.Action)
                 {
@@ -204,10 +232,10 @@ namespace ArduinoCar2
                         controller.SendCmd((byte)ArduinoCommands.Backward, 10);
                         break;
                     case StateAction.CircleLeft:
-                        controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
+                        controller.SendCmd((byte)ArduinoCommands.CircleLeft, 20);
                         break;
                     case StateAction.CircleRight:
-                        controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
+                        controller.SendCmd((byte)ArduinoCommands.CircleRight, 20);
                         break;
                     case StateAction.Stop:
                         controller.SendCmd((byte)ArduinoCommands.Stop);
@@ -224,14 +252,20 @@ namespace ArduinoCar2
                 }
                 await Task.Delay(delay);
             }
-            controller.SendCmd((byte)ArduinoCommands.Stop);
+            controller.SendCmd((byte)ArduinoCommands.Stop);  // Stoppt Auto nach Plan
         }
+        /// <summary>
+        /// Aktualisiert DataGrid Anzeige des Planers
+        /// </summary>
         private void RefreshGrid()
         {
             stateGrid.ItemsSource = null;
             stateGrid.ItemsSource = states;
         }
-
+        /// <summary>
+        /// Überprüft Eingaben in der Wert-Spalte
+        /// Es sind nur Werte > 0 erlaubt, bei ungültigen Eingabe wird eine Warnung angezeigt
+        /// </summary>
         private void StateGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             if (e.Column.Header.ToString() == "Wert")
@@ -254,11 +288,12 @@ namespace ArduinoCar2
                 }
             }
         }
-
+        /// <summary>
+        /// Baut Verbindung zum Arduino auf
+        /// Gibt Fehler im Status an
+        /// </summary>
         private void TryConnect()
         {
-            statusLabel.Text = "Verbindung wird aufgebaut...";
-            statusLabel.Foreground = Brushes.Orange;
 
             if (controller.Connect())
             {
@@ -342,7 +377,9 @@ namespace ArduinoCar2
             rightSpeed = -80;
             controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
         }
-
+        /// <summary>
+        /// Inhalte des Hilfs-Panels
+        /// </summary>
         private void Help_Click(object sender, EventArgs e)
         {
             if (drivePanel.Visibility == Visibility.Visible)
@@ -376,6 +413,9 @@ Der Planer wird von oben nach unten ausgeführt";
         {
             helpPanel.Visibility = Visibility.Collapsed;    
         }
+        /// <summary>
+        /// Arduino Befehle
+        /// </summary>
         public enum ArduinoCommands : byte
         {
             Stop = 0,
