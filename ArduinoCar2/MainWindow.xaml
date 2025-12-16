@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="Arduino Steuerung" Height="650" Width="800"
         PreviewKeyDown="Window_KeyDown" PreviewKeyUp="Window_KeyUp">
-    <Grid> <!-- Hauptgrid -->
+    <Grid>
+        <!-- Hauptgrid -->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <!-- Fahrsteuerung Panel -->
                 <StackPanel Margin="30" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="drivePanel" Visibility="Visible">
                     <TextBlock Text="ArduinoCar Steuerung" FontSize="28" HorizontalAlignment="Center" Margin="0 0 0 20"/>
-                    <TextBlock x:Name="statusLabel" Text="Verbindung nicht hergestellt" Foreground="Red" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+                    <TextBlock x:Name="statusLabel" Text="Verbindung nicht hergestellt" Foreground="Red" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0 0 0 20"/>
                     <Button Content="Retry Verbindung" Width="200" Click="Retry_Click" Margin="0 0 0 20"/>
                     <Button Content="Show plan" Width="100" Click="ShowPanel_Click"/>
 
@@ -33,7 +34,7 @@
                         <ProgressBar x:Name="leftBar" Grid.Row="1" Grid.Column="0" Height="20" Margin="5"/>
                         <ProgressBar x:Name="rightBar" Grid.Row="1" Grid.Column="1" Height="20" Margin="5"/>
                     </Grid>
-                    
+
                     <!-- Steuerbuttons -->
                     <Grid Margin="0 20 0 0">
                         <Grid.RowDefinitions>
@@ -56,7 +57,7 @@
                         <Button Grid.Row="3" Grid.Column="2" Content="Kreis rechts" Width="120" Height="60" Click="CircleRight_Click"/>
                     </Grid>
                 </StackPanel>
-                
+
                 <!-- Planer Panel -->
                 <StackPanel Margin="30" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="planPanel" Visibility="Collapsed">
                     <Button Content="Zurück zur Fahransicht" Margin="5" Width="150" FontWeight="Bold" Click="BackToDrive_Click"/>
@@ -66,7 +67,7 @@
                     <Button Content="Löschen" Width="120" Margin="10,0" Click="DeleteState_Click"/>
 
                     <Button Content="Plan Starten" Margin="10" Width="120" Click="StartPlan_Click"/>
-                    
+
                     <!-- DataGrid für Zustände -->
                     <DataGrid x:Name="stateGrid" AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" CellEditEnding="StateGrid_CellEditEnding" Margin="10" Height="250">
                         <DataGrid.Columns>
@@ -81,7 +82,7 @@
 
             </Grid>
         </ScrollViewer>
-        
+
         <!-- Hilfe-Panel -->
         <Grid x:Name="helpPanel" Background="White" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ScrollViewer Margin="50">

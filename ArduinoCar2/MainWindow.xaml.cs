@@ -40,6 +40,7 @@ namespace ArduinoCar2
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(70);
             timer.Tick += Timer_Tick;
+            TryConnect();
         }
         /// <summary>
         /// Beim loslassen der Tasten wird der entsprechende bool auf false gesetzt. Stoppt ggf. Timer, wenn keine Tasten mehr gedrückt sind.
@@ -126,7 +127,7 @@ namespace ArduinoCar2
                     }
                     if (right)
                     {
-                        leftSpeed = shift? -110 : -70;
+                        leftSpeed = shift ? -110 : -70;
                         rightSpeed = shift ? -40 : -10;
                     }
                 }
@@ -154,8 +155,8 @@ namespace ArduinoCar2
                 if (leftSpeed == 0 && rightSpeed == 0) cmd = ArduinoCommands.Stop;
                 else if (leftSpeed <= 0 && rightSpeed <= 0) cmd = ArduinoCommands.Backward;
                 else if (leftSpeed >= 0 && rightSpeed >= 0) cmd = ArduinoCommands.Forward;
-                else if (leftSpeed < 0 && rightSpeed > 0) cmd = ArduinoCommands.CircleRight;
-                else if (leftSpeed > 0 && rightSpeed < 0) cmd = ArduinoCommands.CircleLeft;
+                else if (leftSpeed < 0 && rightSpeed > 0) cmd = ArduinoCommands.CircleLeft;
+                else if (leftSpeed > 0 && rightSpeed < 0) cmd = ArduinoCommands.CircleRight;
                 else cmd = ArduinoCommands.Stop;
 
                 controller.SendCmd((byte)cmd, leftSpeed, rightSpeed);
@@ -221,7 +222,7 @@ namespace ArduinoCar2
                 MessageBox.Show("Arduino ist nicht verbunden!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            foreach (DriveState state in states.OrderBy(s =>  s.Index))
+            foreach (DriveState state in states.OrderBy(s => s.Index))
             {
                 switch (state.Action)
                 {
@@ -232,10 +233,10 @@ namespace ArduinoCar2
                         controller.SendCmd((byte)ArduinoCommands.Backward, 10);
                         break;
                     case StateAction.CircleLeft:
-                        controller.SendCmd((byte)ArduinoCommands.CircleLeft, 20);
+                        controller.SendCmd((byte)ArduinoCommands.CircleRight, 20);
                         break;
                     case StateAction.CircleRight:
-                        controller.SendCmd((byte)ArduinoCommands.CircleRight, 20);
+                        controller.SendCmd((byte)ArduinoCommands.CircleLeft, 20);
                         break;
                     case StateAction.Stop:
                         controller.SendCmd((byte)ArduinoCommands.Stop);
@@ -292,21 +293,23 @@ namespace ArduinoCar2
         /// Baut Verbindung zum Arduino auf
         /// Gibt Fehler im Status an
         /// </summary>
-        private void TryConnect()
+        private async Task TryConnect()
         {
-
-            if (controller.Connect())
+            statusLabel.Text = "Versuche Verbindung aufzubauen...";
+            statusLabel.Foreground = Brushes.Orange;
+            bool connected = await Task.Run(() => controller.Connect());  // Neuer Thrad, damit UI nicht blockiert wird
+            if (connected)
             {
                 statusLabel.Text = "Verbunden";
-                statusLabel.Foreground = Brushes.Green;   
+                statusLabel.Foreground = Brushes.Green;
             }
             else
             {
                 statusLabel.Text = $"Fehler: {controller.LastError}";
                 statusLabel.Foreground = Brushes.Red;
-                
+
             }
-        }   
+        }
         private void Retry_Click(object sender, EventArgs e)
         {
             TryConnect();
@@ -343,7 +346,7 @@ namespace ArduinoCar2
             drivePanel.Visibility = Visibility.Collapsed;
             planPanel.Visibility = Visibility.Visible;
         }
-        
+
         private void BackToDrive_Click(object sender, RoutedEventArgs e)
         {
             drivePanel.Visibility = Visibility.Visible;
@@ -368,14 +371,14 @@ namespace ArduinoCar2
         {
             leftSpeed = -80;
             rightSpeed = 80;
-            controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
+            controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
             UpdateUI();
         }
         private void CircleRight_Click(object sender, EventArgs e)
         {
             leftSpeed = 80;
             rightSpeed = -80;
-            controller.SendCmd((byte)ArduinoCommands.CircleRight, 10);
+            controller.SendCmd((byte)ArduinoCommands.CircleLeft, 10);
         }
         /// <summary>
         /// Inhalte des Hilfs-Panels
@@ -396,7 +399,7 @@ E   -   Kreis rechts
 Buttons:
 Steuern den Panzer an alternativ zur Tastatur";
             }
-            else if (planPanel.Visibility == Visibility.Visible) 
+            else if (planPanel.Visibility == Visibility.Visible)
             {
                 helpTextBox.Text = @"Planer
 Hier kannst du Zustände festlegen und hinzufügen:
@@ -411,7 +414,7 @@ Der Planer wird von oben nach unten ausgeführt";
 
         private void CloseHelp_Click(object sender, EventArgs e)
         {
-            helpPanel.Visibility = Visibility.Collapsed;    
+            helpPanel.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Arduino Befehle

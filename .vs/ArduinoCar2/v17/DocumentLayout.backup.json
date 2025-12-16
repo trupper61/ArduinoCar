@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|c:\\users\\ruper\\source\\repos\\arduinocar\\arduinocar2\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{07A4C956-9704-4A50-A623-7F6A58FF24C8}|ArduinoCar2\\ArduinoCar2.csproj|solutionrelative:arduinocar2\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ArduinoCar2\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml*",
+              "RelativeToolTip": "ArduinoCar2\\MainWindow.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-16T05:54:39.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ArduinoCar2\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ruper\\source\\repos\\ArduinoCar\\ArduinoCar2\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "ArduinoCar2\\MainWindow.xaml.cs*",
+              "ViewState": "AgIAAJMBAAAAAAAAAAAuwK8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T05:54:12.978Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
